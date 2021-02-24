@@ -1,68 +1,58 @@
 from random import randint
 
-
 gen_num = randint(1, 10)
-
-tries = 0
-player_score = 100
+print(gen_num)
 
 def welcome():
     player = input("Please enter your name:\t")
     print("Welcome", player.upper(),"to the Number Guessing game \n\n")
 
-def check_tries():
-    global player_score
-    global tries
-    player_score = (10 - tries) * 10
-    if tries != 0:
-        print("you already guessed ", tries, "times.\n Your score is:", player_score)
-    else:
+class NumGuessing:
 
+    def __init__(self, tries, player_score):
 
+        self.tries = tries
+        self.player_score = player_score
 
-        
-    
-    def compare_input(*inputs):
-            global tries
-            global player_score
-            tries = 0
-            player_score = 100
-            while tries < 3:
-                tries = tries + 1
-                print(tries)
-                
-                inputs = input("Enter a number between 1 and 10: ")
-                int_inputs = int(inputs)
+    def check_tries(self):
+        self.player_score = (10 - self.tries) * 10
+        if self.tries != 0:
+            print("you already guessed ", self.tries, "times.\n Your score is:", self.player_score)
             
-                for usr_input in inputs:
-                    print("Your guess is {}".format(usr_input)) 
-                    if int_inputs == gen_num:
-                        print("correct guess")
-                        #print("Your score is", player_score)
-                        return 
-                    else:
-                        player_score = player_score - 10
-                        print("Guess again")       
+        else:
+            print("Go on")
             return
+
+    def compare_input(self, *inputs):
+
+        while self.tries < 3:
+            self.tries = self.tries + 1
+            print(self.tries)    
+            
+            inputs = input("Enter a number between 1 and 10: ")
+            int_inputs = int(inputs)
+            
+            for usr_input in inputs:
+                print("Your guess is {}".format(usr_input)) 
+                if int_inputs == gen_num:
+                    print("C
+                    orrect guess")       #print("Your score is", player_score)
+                    return self.player_score
+                
+                else:
+                    self.player_score = self.player_score - 10
+                    print("Guess again", self.player_score)                  
+        
+        return self.player_score
         
 
             
     
 
-
-
-
-
-
-
-
-
-
-
-
-   
+  
 welcome()       
-check_tries()
-print("Your score is", player_score)
+num_guess = NumGuessing(0, 100)
+num_guess.check_tries()
+print("Your score is", num_guess.compare_input())
 
 

@@ -1,0 +1,65 @@
+######################
+
+in this game i created 
+1. A random function-> to generate rock paper scissors
+2. A valid function-> to check the validity of the move
+3. A result function to declare the winner of the round
+4. A scorekeeper-> to keep track of the score 
+
+User will make first move before the program 
+The user input is evaluated, input could be a string or alphabet
+After evaluation the winner is decided by the result function 
+Score of the round is updated by scorekeeper function
+
+RULES 
+Rock > scissors 
+Scissors > paper 
+Paper > rock 
+same = draw
+
+
+#############
+def valid():
+        while True:
+            try:
+                value = int(input(prompt))
+            except ValueError:
+                print("Sorry")
+                continue 
+
+################################
+check if the variable is all letters
+
+def is_string_only(check_input):
+    if check_input.isalpha():
+        return True
+    return False
+
+or
+user_input = input('')
+if user_input.isalpha():
+    #do stuff
+#####################################    
+
+check if there is space
+char.isspace()
+##################################
+
+using any()
+
+res = any(ele in test_string for ele in test_list)
+
+print("does string contain any element from list: "+ str(res))
+####################################################
+def valid():
+    valid_input = ['rock', 'r', 'paper', 'p', 'scissors', 's']
+    while True:
+        try:
+            usr_input = input("Rock, Paper, Scissors: \n")
+            if usr_input in valid_input:
+                print("validating....")
+        
+        except ValueError:
+            print("Sorry")
+            continue
+    return usr_input

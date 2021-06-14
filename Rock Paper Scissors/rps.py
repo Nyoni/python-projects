@@ -9,7 +9,7 @@ class Rps():
         self.player = player
         self.tries = tries
         self.player_score = player_score
-        self.comp_choice = random.choice(['rock', 'paper', 'scissors'])
+        self.comp_choice = random.choice(['r', 'p', 's'])
         self.ui = ui
 
     def welcome(self):    
@@ -71,22 +71,32 @@ class Rps():
 
 
 
-    def result(self, answer):
-        if answer == self.comp_choice:
-            print(" DRAW ")
-        elif answer == 'rock' or 'r' and self.comp_choice == 'scissors' or 's':
-            print(" YOU WIN ")
-        elif answer == 'paper' or 'p' and self.comp_choice == 'scissors' or 's':
-            print("I WIN") 
-        elif answer == 'scissors' or 's' and self.comp_choice == 'rock' or 'r':
-            print("I WIN")        
-        elif answer == 'paper' or 'p' and self.comp_choice == 'rock' or 'r':
-            print("YOU WIN")
-        elif answer == 'rock' or 'r' and self.comp_choice == 'paper' or 'p':
-            print("I WIN")            
-        elif answer == 'scissors' or 's' and self.comp_choice == 'paper' or 'p':
-            print("YOU WIN")  
-
+    def result(self):
+        while True:
+            if self.ui == self.comp_choice:
+                print(" DRAW ")
+                break
+            elif self.ui == 'r' and self.comp_choice == 's':
+                print(" YOU WIN ")
+                break
+            elif self.ui ==  'p' and self.comp_choice == 's':
+                print("I WIN")
+                break 
+            elif self.ui == 's' and self.comp_choice ==  'r':
+                print("I WIN")
+                break        
+            elif self.ui ==  'p' and self.comp_choice ==  'r':
+                print("YOU WIN")
+                break
+            elif self.ui ==  'r' and self.comp_choice == 'p':
+                print("I WIN")
+                break            
+            elif self.ui == 's' and self.comp_choice == 'p':
+                print("YOU WIN")
+                break
+            else:
+                print("Error")      
+                break
     def compare_input(self, *inputs):
         while self.tries < 3:
             self.tries = self.tries + 1
@@ -115,7 +125,7 @@ rps_game.check_tries()
 
 answer = rps_game.valid_input("Rock Paper or Scissors: \n", str.lower, range_ =['rock', 'r', 'paper', 'p', 'scissors', 's'])
 rps_game.random_func()
-rps_game.result(answer)
+rps_game.result()
 #print("Your score is", rps_game.compare_input())
 rps_game.high_score()
 #############################################

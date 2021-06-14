@@ -1,131 +1,76 @@
+#import library
+from tkinter import *
 import random
 
+#initialize window
+gui = Tk()
+gui.geometry('600x600')
+gui.resizable(0,0)
+gui.title('Rock,Paper,Scissors Game by Tafadzwa')
+gui.config(bg ='#32a4a8')
 
 
-class Rps():
+#heading
+Label(gui, text = 'Rock, Paper ,Scissors' , font='arial 20 bold', bg = '#32a4a8').pack()
 
-    def __init__(self, player, tries, player_score, ui):
-        self.highscore = {} 
-        self.player = player
-        self.tries = tries
-        self.player_score = player_score
-        self.comp_choice = random.choice(['r', 'p', 's'])
-        self.ui = ui
+##user choice
+user_take = StringVar()
+Label(gui, text = 'rock, paper ,scissors' , font='arial 15 bold', background = 'seashell2').place(x = 20,y=70)
+Entry(gui, font = 'arial 15', textvariable = user_take , background = 'antiquewhite2').place(x=90 , y = 130)
 
-    def welcome(self):    
-        self.player = input("Please enter your name:\t")
-        print("Welcome", self.player.upper(),"to the Rock Pape Scissors game \n\n")
-
-    def high_score(self):
-        self.highscore[self.player] = self.player_score
-        for key in self.highscore:
-            print(key, self.highscore[key])
-
-    def check_tries(self):
-        self.player_score = (10 - self.tries) * 10
-        if self.tries != 0:
-            print("you already guessed ", self.tries, "times.\n Your score", self.player, "is:", self.player_score)
-            
-        else:
-            print("Go on")
-            return
-
-
-
-    def valid_input(self, prompt, type_=None, min_=None, max_=None, range_=None):
-        if min_ is not None and max_ is not None and max_ < min_:
-            raise ValueError("min_ must be less than or equal to max_.")
-        while True:
-            self.ui = input(prompt)
-            if type_ is not None:
-                try:
-                    self.ui = type_(self.ui)
-                except ValueError:
-                    print("Input type must be {0}.".format(type_.__name__))
-                    continue
-            if max_ is not None and self.ui > max_:
-                print("Input must be less than or equal to {0}.".format(max_))
-            elif min_ is not None and self.ui < min_:
-                print("Input must be greater than or equal to {0}.".format(min_))
-            elif range_ is not None and self.ui not in range_:
-                if isinstance(range_, range):
-                    template = "Input must be between {0.start} and {0.stop}."
-                    print(template.format(range_))
-                else:
-                    template = "Input must be {0}."
-                    if len(range_) == 1:
-                        print(template.format(*range_))
-                    else:
-                        expected = " or ".join((
-                            ", ".join(str(x) for x in range_[:-1]),
-                            str(range_[-1])
-                        ))
-                        print(template.format(expected))
-            else:
-                return self.ui         
-            
-                       
-    def random_func(self): 
+#computer choice
+comp_pick = random.randint(1,3)
+if comp_pick == 1:
+    comp_pick = 'rock'
+elif comp_pick ==2:
+    comp_pick = 'paper'
+else:
+    comp_pick = 'scissors'
     
-        print("Computer chooses: " + self.comp_choice)
+##function to play
+Result = StringVar()
 
-
-
-    def result(self):
-        while True:
-            if self.ui == self.comp_choice:
-                print(" DRAW ")
-                break
-            elif self.ui == 'r' and self.comp_choice == 's':
-                print(" YOU WIN ")
-                break
-            elif self.ui ==  'p' and self.comp_choice == 's':
-                print("I WIN")
-                break 
-            elif self.ui == 's' and self.comp_choice ==  'r':
-                print("I WIN")
-                break        
-            elif self.ui ==  'p' and self.comp_choice ==  'r':
-                print("YOU WIN")
-                break
-            elif self.ui ==  'r' and self.comp_choice == 'p':
-                print("I WIN")
-                break            
-            elif self.ui == 's' and self.comp_choice == 'p':
-                print("YOU WIN")
-                break
-            else:
-                print("Error")      
-                break
-    def compare_input(self, *inputs):
-        while self.tries < 3:
-            self.tries = self.tries + 1
-            print(self.tries)
-
-            inputs = input("Enter a number between 1 and 10: ")
-            int_inputs = int(inputs)
-
-            for usr_input in inputs:
-                print("Your guess is {}".format(usr_input)) 
-                if int_inputs == gen_num:
-                    print("Correct guess")       #print("Your score is", player_score)
-                    return self.player_score
-                
-                else:
-                    self.player_score = self.player_score - 10
-                    print("Guess again", self.player_score)                  
+def play():
+    user_pick = user_take.get()
+    if user_pick == comp_pick:
+        Result.set('tie,you both select same')
+    elif user_pick == 'rock' and comp_pick == 'paper':
+        Result.set('you loose,computer select paper')
+    elif user_pick == 'rock' and comp_pick == 'scissors':
+        Result.set('you win,computer select scissors')
+    elif user_pick == 'paper' and comp_pick == 'scissors':
+        Result.set('you loose,computer select scissors')
+    elif user_pick == 'paper' and comp_pick == 'rock':
+        Result.set('you win,computer select rock')
+    elif user_pick == 'scissors' and comp_pick == 'rock':
+        Result.set('you loose,computer select rock')
+    elif user_pick == 'scissors' and comp_pick == 'paper':
+        Result.set('you win ,computer select paper')
+    else:
+        Result.set('invalid: choose any one -- rock, paper, scissors')
+    
         
-        return self.player_score
+    
+##fun to reset
+def Reset():
+    Result.set("") 
+    user_take.set("")
+
+##fun to exit
+def Exit():
+    gui.destroy()
 
 
-rps_game = Rps("", 0, 100, "")
-rps_game.welcome()
-rps_game.check_tries()
+###### button
+Entry(gui, font = 'arial 10 bold', textvariable = Result, bg ='antiquewhite2',width = 50,).place(x=25, y = 250)
+
+Button(gui, font = 'arial 13 bold', text = 'PLAY'  ,padx =5,bg ='#3242a8' ,command = play).place(x=150,y=190)
+
+Button(gui, font = 'arial 13 bold', text = 'RESET'  ,padx =5,bg ='#3242a8' ,command = Reset).place(x=70,y=310)
+
+Button(gui, font = 'arial 13 bold', text = 'EXIT'  ,padx =5,bg ='#3242a8' ,command = Exit).place(x=230,y=310)
+
+gui.mainloop()
 
 
-answer = rps_game.valid_input("Rock Paper or Scissors: \n", str.lower, range_ =['rock', 'r', 'paper', 'p', 'scissors', 's'])
-rps_game.random_func()
-rps_game.result()
-#print("Your score is", rps_game.compare_input())
-rps_game.high_score()
-#############################################
+

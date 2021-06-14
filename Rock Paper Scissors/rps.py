@@ -5,8 +5,8 @@ import random
 
 
 def random_func(): 
-    choice = random.choice(['rock', 'paper', 'scissors'])
-    print(choice)
+    comp_choice = random.choice(['rock', 'paper', 'scissors'])
+    print("Computer chooses: " + comp_choice)
 
 def valid_input(prompt, type_=None, min_=None, max_=None, range_=None):
     if min_ is not None and max_ is not None and max_ < min_:
@@ -40,10 +40,27 @@ def valid_input(prompt, type_=None, min_=None, max_=None, range_=None):
         else:
             return ui
 
+def result():
+    if answer == comp_choice:
+        print(" DRAW ")
+    elif answer == 'rock' or 'r' and comp_choice == 'scissors' or 's':
+        print(" YOU WIN ")
+    elif answer == 'paper' or 'p' and comp_choice == 'scissors' or 's':
+        print("I WIN") 
+    elif answer == 'scissors' or 's' and comp_choice == 'rock' or 'r':
+        print("I WIN")        
+    elif answer == 'paper' or 'p' and comp_choice == 'rock' or 'r':
+        print("YOU WIN")
+    elif answer == 'rock' or 'r' and comp_choice == 'paper' or 'p':
+        print("I WIN")            
+    elif answer == 'scissors' or 's' and comp_choice == 'paper' or 'p':
+        print("YOU WIN")  
 
 
 
 
-answer = valid_input("Rock, Paper, Scissors: \n", str.lower, range_ =['rock', 'r', 'paper', 'p', 'scissors', 's'])
+
+answer = valid_input("[R]ock, [P]aper, [S]cissors: \n", str.lower, range_ =['rock', 'r', 'paper', 'p', 'scissors', 's'])
 random_func()
+result()
 #############################################

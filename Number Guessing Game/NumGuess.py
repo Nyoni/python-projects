@@ -303,7 +303,7 @@
 
 
 
-from random import randint
+gfrom random import randint
 
 gen_num = randint(1, 10)
 print(gen_num)

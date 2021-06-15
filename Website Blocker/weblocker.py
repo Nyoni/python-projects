@@ -26,7 +26,7 @@ def block_websites():
         dt.now().month, 
         dt.now().day, 9) < dt.now() < dt(dt.now().year,
         dt.now().month, 
-        dt.now().day, 18):
+        dt.now().day, 20):
             print("Do your work")
 
             with open(default_hoster, 'r+') as hostfile:

@@ -1,0 +1,11 @@
+The website blocker will block certain selected sites that distract you during working hours
+
+Requirements
+Use time & Datetime module
+
+How to block
+OS systems have a host file
+And its here where im going to add a list of websites to block
+Add website URLs which are mapped to localhost thus preventing from accessing the real sites
+i added those site to hostfile during working hours and removing them immediately
+

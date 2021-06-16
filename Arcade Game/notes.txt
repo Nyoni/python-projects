@@ -1,0 +1,75 @@
+DESIGNING A GAME 
+-first thing is defining what makes a 2D game a platformer
+
+2D Platformer Game Characteristics
+-The player jumps and climbs between various platforms on the game field.
+-The platforms oxen feature uneven terrain and uneven height placements.
+-Obstacles are placed in the player’s path and must be overcome to reach a goal.
+
+Requirement for a 2D Platform Game
+-Multiple levels of increasing difficulty
+-Rewards available throughout the game
+-Multiple player lives
+-Ability to destroy game obstacles
+
+Game Story
+**********
+
+Game Mechanics
+-This is how you will control gameplay. 
+-Moving the player around the game field requires a way to control several 
+different movements.
+-← Left and → Right to move on a platform
+-↑ Up and ↓ Down to climb ladders between platforms
+-Jump to collect coins, avoid enemies, or move between platforms
+-You aren’t limited to just keyboard input, either. 
+-The arcade library includes support for joysticks and game controllers.
+
+Game Assets
+-The idea of how the game should work is now there,
+-Now a decision has to be made on how the game will look and sound. 
+-The images, sprites, sounds, and even text used to display the score are 
+collectively known as assets. 
+-They define the game in the eyes of the players. 
+-Its a challenge creating them taking as much time, if not more, than writing
+ the actual game code.
+
+Program Structure
+-The final step before writing code is deciding how you will structure and store 
+everything
+-Because video games consist of graphic and sound assets as well as code, it’s
+important to organize the project. 
+-Keeping game assets and code properly organized will enable the making of 
+targeted changes to the design or behavior of your game while minimizing the 
+impact to other game aspects.
+
+The project uses the following structure
+
+Arcade Game/
+| ├──
+arcade_game/
+| ├──
+assets/
+| |
+│ ├── images/
+| | |
+│ │ ├── enemies/
+| | |
+│ │ ├── ground/
+| | |
+│ │ ├── HUD/
+| | |
+│ │ ├── items/
+| | |
+│ │ ├── player/
+| | |
+│ │ └── tiles/
+| |
+│ └── sounds/
+| └──
+tests/
+
+-Under the root folder of the project are the following subfolders:
+-arcade_game holds all the Python code for the game.
+-assets consists of all your game images, fonts, sounds, and tile maps.
+-tests contains any tests written.
